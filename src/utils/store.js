@@ -52,12 +52,45 @@ export async function syncFromFile() {
     // Goals: file always wins
     if (data.goals) save(GOALS_KEY, data.goals);
 
+    // Ideas: merge like tasks
+    if (data.ideas) {
+      const localIdeas = load(IDEAS_KEY, []);
+      const localIdeaIds = new Set(localIdeas.filter(i => i._local).map(i => i.id));
+      const fileIdeas = (data.ideas || []).map(i => ({ ...i, _file: true }));
+      const mergedIdeas = [
+        ...fileIdeas,
+        ...localIdeas.filter(i => localIdeaIds.has(i.id) && !fileIdeas.find(f => f.id === i.id)),
+      ];
+      save(IDEAS_KEY, mergedIdeas);
+    }
+
     localStorage.setItem(SYNC_KEY, String(fileTs));
     return true;
   } catch (e) {
     console.warn('Sync failed:', e);
     return false;
   }
+}
+
+const IDEAS_KEY = 'mc_ideas';
+const IDEA_STATUSES = ['spark', 'exploring', 'validated', 'building'];
+
+// --- Ideas ---
+export function getIdeas() { return load(IDEAS_KEY, []); }
+
+export function saveIdea(idea) {
+  const ideas = getIdeas();
+  const idx = ideas.findIndex(i => i.id === idea.id);
+  if (idx >= 0) ideas[idx] = { ...ideas[idx], ...idea, updatedAt: Date.now(), _local: true };
+  else ideas.push({ ...idea, id: uid(), createdAt: Date.now(), updatedAt: Date.now(), _local: true });
+  save(IDEAS_KEY, ideas);
+  return ideas;
+}
+
+export function deleteIdea(id) {
+  const ideas = getIdeas().filter(i => i.id !== id);
+  save(IDEAS_KEY, ideas);
+  return ideas;
 }
 
 // --- Tasks ---
@@ -112,4 +145,4 @@ export function seedIfEmpty() {
   });
 }
 
-export { AGENTS, STATUSES, PRIORITIES };
+export { AGENTS, STATUSES, PRIORITIES, IDEA_STATUSES };

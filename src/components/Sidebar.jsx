@@ -5,6 +5,7 @@ const navItems = [
   { to: '/board', label: '📋 Board' },
   { to: '/roadmap', label: '🗺️ Roadmap' },
   { to: '/goals', label: '🎯 Goals' },
+  { to: '/ideas', label: '💡 Ideas' },
   { to: '/team', label: '👥 Team' },
   { to: '/backlog', label: '📦 Backlog' },
 ];
