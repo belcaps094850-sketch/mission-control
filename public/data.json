@@ -1,0 +1,271 @@
+{
+  "tasks": [
+    {
+      "id": "t1",
+      "title": "Set up React Radar cron job",
+      "description": "Daily Reddit scan for React topics",
+      "assignee": "Pixel",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-12",
+      "createdAt": 1707700000000,
+      "updatedAt": 1707700000000,
+      "project": "Learning Lab"
+    },
+    {
+      "id": "t2",
+      "title": "Build MedStopLoss marketing site",
+      "description": "React marketing pages from Nova's copy",
+      "assignee": "Pixel",
+      "priority": "high",
+      "status": "in-progress",
+      "dueDate": "2026-02-14",
+      "createdAt": 1707700000000,
+      "updatedAt": 1707700000000,
+      "project": "MedStopLoss"
+    },
+    {
+      "id": "t3",
+      "title": "SRE daily digest automation",
+      "description": "Automated daily SRE digest scanning and page updates",
+      "assignee": "Atlas",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-15",
+      "createdAt": 1707700000000,
+      "updatedAt": 1707700000000,
+      "project": "Learning Lab"
+    },
+    {
+      "id": "t4",
+      "title": "MedStopLoss market research",
+      "description": "Research stop loss market, competitors, and positioning",
+      "assignee": "Nova",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-14",
+      "createdAt": 1707700000000,
+      "updatedAt": 1707700000000,
+      "project": "MedStopLoss"
+    },
+    {
+      "id": "t5",
+      "title": "De-Positioning book research",
+      "description": "Key takeaways from De-Positioning book for B2B CX",
+      "assignee": "Sage",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-14",
+      "createdAt": 1771090000000,
+      "updatedAt": 1771100000000,
+      "project": "Research"
+    },
+    {
+      "id": "t6",
+      "title": "B2B Customer Experience deep dive",
+      "description": "Comprehensive B2B CX research with frameworks and best practices",
+      "assignee": "Sage",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-14",
+      "createdAt": 1771090000000,
+      "updatedAt": 1771106000000,
+      "project": "Research"
+    },
+    {
+      "id": "t7",
+      "title": "Book Notes page",
+      "description": "Reusable book notes template with De-Positioning and B2B CX content",
+      "assignee": "Pixel",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-14",
+      "createdAt": 1771090000000,
+      "updatedAt": 1771100000000,
+      "project": "Learning Lab"
+    },
+    {
+      "id": "t8",
+      "title": "Landing page redesign",
+      "description": "Card grid layout, intro text, favicon, footer for bebelcapistrano.com",
+      "assignee": "Pixel",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-14",
+      "createdAt": 1771095000000,
+      "updatedAt": 1771100000000,
+      "project": "Learning Lab"
+    },
+    {
+      "id": "t9",
+      "title": "MSL competitor & provider analysis",
+      "description": "Top competitors, providers, and value prop of Medical Stop Loss",
+      "assignee": "Nova",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-14",
+      "createdAt": 1771105000000,
+      "updatedAt": 1771108000000,
+      "project": "MedStopLoss"
+    },
+    {
+      "id": "t10",
+      "title": "Enable macOS firewall",
+      "description": "Enable Application Firewall and stealth mode",
+      "assignee": "Atlas",
+      "priority": "critical",
+      "status": "done",
+      "dueDate": "2026-02-14",
+      "createdAt": 1771100000000,
+      "updatedAt": 1771127000000,
+      "project": "Infrastructure"
+    },
+    {
+      "id": "t11",
+      "title": "Migrate to llama3.1",
+      "description": "Remove phi3:mini, switch Scout to llama3.1, benchmark at ~21 tok/s",
+      "assignee": "Alec",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-14",
+      "createdAt": 1771115000000,
+      "updatedAt": 1771117000000,
+      "project": "Infrastructure"
+    },
+    {
+      "id": "t12",
+      "title": "Daily AI news digest",
+      "description": "Automated daily scan of Reddit/web for Claude, OpenAI, AI news",
+      "assignee": "Radar",
+      "priority": "high",
+      "status": "in-progress",
+      "dueDate": "",
+      "createdAt": 1771124000000,
+      "updatedAt": 1771124000000,
+      "project": "Infrastructure"
+    },
+    {
+      "id": "t13",
+      "title": "Daily security scan",
+      "description": "Automated CVE, firewall, permissions, brew audit checks",
+      "assignee": "Sentinel",
+      "priority": "high",
+      "status": "in-progress",
+      "dueDate": "",
+      "createdAt": 1771125000000,
+      "updatedAt": 1771125000000,
+      "project": "Infrastructure"
+    },
+    {
+      "id": "t14",
+      "title": "Daily changelog",
+      "description": "Auto-generate daily activity summary across all agents",
+      "assignee": "Scribe",
+      "priority": "medium",
+      "status": "in-progress",
+      "dueDate": "",
+      "createdAt": 1771125000000,
+      "updatedAt": 1771125000000,
+      "project": "Infrastructure"
+    },
+    {
+      "id": "t15",
+      "title": "MSL weekly industry digest",
+      "description": "Weekly scan of MSL market news, competitors, regulations",
+      "assignee": "Broker",
+      "priority": "medium",
+      "status": "in-progress",
+      "dueDate": "",
+      "createdAt": 1771125000000,
+      "updatedAt": 1771125000000,
+      "project": "MedStopLoss"
+    },
+    {
+      "id": "t16",
+      "title": "Weekly learning prompt",
+      "description": "Suggest one learning topic based on recent work activity",
+      "assignee": "Mentor",
+      "priority": "medium",
+      "status": "in-progress",
+      "dueDate": "",
+      "createdAt": 1771125000000,
+      "updatedAt": 1771125000000,
+      "project": "Learning Lab"
+    },
+    {
+      "id": "t17",
+      "title": "Weekly team retrospective",
+      "description": "Cross-agent status rollup and health check",
+      "assignee": "Conductor",
+      "priority": "medium",
+      "status": "in-progress",
+      "dueDate": "",
+      "createdAt": 1771125000000,
+      "updatedAt": 1771125000000,
+      "project": "Infrastructure"
+    },
+    {
+      "id": "t18",
+      "title": "Coordinate agent workflows",
+      "description": "Manage cross-agent task handoffs and priorities",
+      "assignee": "Alec",
+      "priority": "medium",
+      "status": "in-progress",
+      "dueDate": "",
+      "createdAt": 1707700000000,
+      "updatedAt": 1707700000000,
+      "project": "Infrastructure"
+    },
+    {
+      "id": "t19",
+      "title": "Learning Hub AI buddy improvements",
+      "description": "Enhance the AI study buddy in learning-hub.html",
+      "assignee": "Pixel",
+      "priority": "medium",
+      "status": "backlog",
+      "dueDate": "2026-02-20",
+      "createdAt": 1707700000000,
+      "updatedAt": 1707700000000,
+      "project": "Learning Lab"
+    },
+    {
+      "id": "t20",
+      "title": "User experience audit",
+      "description": "Review all pages for UX consistency and accessibility",
+      "assignee": "Sage",
+      "priority": "medium",
+      "status": "backlog",
+      "dueDate": "2026-02-18",
+      "createdAt": 1707700000000,
+      "updatedAt": 1707700000000,
+      "project": "Learning Lab"
+    }
+  ],
+  "goals": [
+    {
+      "id": "g1",
+      "title": "Launch MedStopLoss website",
+      "progress": 40,
+      "description": "Complete marketing site with all pages"
+    },
+    {
+      "id": "g2",
+      "title": "Automate daily content updates",
+      "progress": 90,
+      "description": "React Radar + SRE Digest + AI Digest + Security Scan + Changelog all running"
+    },
+    {
+      "id": "g3",
+      "title": "Mission Control MVP",
+      "progress": 60,
+      "description": "Team dashboard for task tracking \u2014 12 agents integrated"
+    },
+    {
+      "id": "g4",
+      "title": "12-agent team fully operational",
+      "progress": 85,
+      "description": "All agents created, configured, and running cron jobs"
+    }
+  ],
+  "lastUpdated": 1771131100000
+}

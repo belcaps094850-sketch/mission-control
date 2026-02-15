@@ -5,11 +5,18 @@ import TaskModal from '../components/TaskModal';
 import { saveTask, deleteTask } from '../utils/store';
 
 const agentMeta = {
-  Alec: { emoji: '🤖', role: 'Main Assistant' },
-  Atlas: { emoji: '🔧', role: 'SRE Ops Manager' },
-  Sage: { emoji: '🎯', role: 'TPO / CX Strategist' },
-  Pixel: { emoji: '🎨', role: 'UI Developer' },
-  Nova: { emoji: '📊', role: 'Business Analyst' },
+  Alec: { emoji: '🦞', role: 'Main Assistant', model: 'Opus 4.6' },
+  Atlas: { emoji: '🔧', role: 'SRE Ops Manager', model: 'Opus 4.6' },
+  Sage: { emoji: '🎯', role: 'TPO / CX Strategist', model: 'Opus 4.6' },
+  Pixel: { emoji: '🎨', role: 'UI Developer', model: 'Opus 4.6' },
+  Nova: { emoji: '📊', role: 'Business Analyst (MSL)', model: 'Opus 4.6' },
+  Mentor: { emoji: '🎓', role: 'Learning Coach', model: 'Opus 4.6' },
+  Conductor: { emoji: '🎼', role: 'Workflow Orchestrator', model: 'Opus 4.6' },
+  Scout: { emoji: '🔎', role: 'Research & Triage', model: 'Llama 3.1' },
+  Radar: { emoji: '📡', role: 'AI News Scanner', model: 'Llama 3.1' },
+  Scribe: { emoji: '✍️', role: 'Docs & Content Writer', model: 'Llama 3.1' },
+  Sentinel: { emoji: '🛡️', role: 'Security Monitor', model: 'Llama 3.1' },
+  Broker: { emoji: '💼', role: 'Industry Intelligence', model: 'Llama 3.1' },
 };
 
 const s = {
@@ -20,6 +27,8 @@ const s = {
   name: { fontSize: '16px', fontWeight: 'bold', color: '#2c3e50' },
   role: { fontSize: '12px', color: '#7f8c8d' },
   count: { fontSize: '12px', color: '#95a5a6', marginBottom: '8px' },
+  model: { fontSize: '11px', color: '#fff', backgroundColor: '#95a5a6', borderRadius: '3px', padding: '1px 6px', display: 'inline-block', marginTop: '2px' },
+  modelLocal: { fontSize: '11px', color: '#fff', backgroundColor: '#27ae60', borderRadius: '3px', padding: '1px 6px', display: 'inline-block', marginTop: '2px' },
 };
 
 export default function Team() {
@@ -41,6 +50,7 @@ export default function Team() {
                 <div>
                   <div style={s.name}>{agent}</div>
                   <div style={s.role}>{meta.role}</div>
+                  <span style={meta.model === 'Llama 3.1' ? s.modelLocal : s.model}>{meta.model}</span>
                 </div>
               </div>
               <div style={s.count}>{mine.length} active task{mine.length !== 1 ? 's' : ''}</div>

@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from './components/Sidebar';
+import Dashboard from './pages/Dashboard';
 import Board from './pages/Board';
+import Roadmap from './pages/Roadmap';
 import Goals from './pages/Goals';
 import Team from './pages/Team';
 import Backlog from './pages/Backlog';
-import { seedIfEmpty } from './utils/store';
+import { syncFromFile } from './utils/store';
 
 const layout = {
   marginLeft: '200px',
@@ -14,14 +16,28 @@ const layout = {
 };
 
 export default function App() {
-  useEffect(() => { seedIfEmpty(); }, []);
+  const [ready, setReady] = useState(false);
+  const [, setTick] = useState(0);
+
+  useEffect(() => {
+    syncFromFile().finally(() => setReady(true));
+    const interval = setInterval(async () => {
+      const synced = await syncFromFile();
+      if (synced) setTick(t => t + 1);
+    }, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!ready) return <div style={{ padding: '40px', color: '#95a5a6' }}>Loading...</div>;
 
   return (
     <BrowserRouter>
       <Sidebar />
       <main style={layout}>
         <Routes>
-          <Route path="/" element={<Board />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/board" element={<Board />} />
+          <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/goals" element={<Goals />} />
           <Route path="/team" element={<Team />} />
           <Route path="/backlog" element={<Backlog />} />

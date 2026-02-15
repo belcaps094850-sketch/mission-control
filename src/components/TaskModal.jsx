@@ -19,7 +19,8 @@ const btnSave = { padding: '8px 20px', backgroundColor: '#3498db', color: '#fff'
 const btnCancel = { padding: '8px 20px', backgroundColor: '#ecf0f1', color: '#555', border: 'none', borderRadius: '4px' };
 const btnDelete = { padding: '8px 20px', backgroundColor: '#e74c3c', color: '#fff', border: 'none', borderRadius: '4px', marginRight: 'auto' };
 
-const empty = { title: '', description: '', assignee: '', priority: 'medium', status: 'backlog', dueDate: '' };
+const PROJECTS = ['MedStopLoss', 'Learning Lab', 'Infrastructure', 'Research'];
+const empty = { title: '', description: '', assignee: '', priority: 'medium', status: 'backlog', dueDate: '', project: '' };
 
 export default function TaskModal({ task, onSave, onDelete, onClose }) {
   const [form, setForm] = useState(empty);
@@ -64,6 +65,13 @@ export default function TaskModal({ task, onSave, onDelete, onClose }) {
           <div style={field}>
             <label style={label}>Due Date</label>
             <input style={input} type="date" value={form.dueDate} onChange={e => set('dueDate', e.target.value)} />
+          </div>
+          <div style={field}>
+            <label style={label}>Project</label>
+            <select style={input} value={form.project || ''} onChange={e => set('project', e.target.value)}>
+              <option value="">None</option>
+              {PROJECTS.map(p => <option key={p} value={p}>{p}</option>)}
+            </select>
           </div>
         </div>
 

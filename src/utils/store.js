@@ -1,8 +1,10 @@
-// localStorage-backed store for tasks and goals
+// Hybrid store: reads from public/data.json (agent-writable) + localStorage for UI edits
 const TASKS_KEY = 'mc_tasks';
 const GOALS_KEY = 'mc_goals';
+const SYNC_KEY = 'mc_last_sync';
+const DATA_URL = '/data.json';
 
-const AGENTS = ['Alec', 'Atlas', 'Sage', 'Pixel', 'Nova'];
+const AGENTS = ['Alec', 'Atlas', 'Sage', 'Pixel', 'Nova', 'Mentor', 'Conductor', 'Scout', 'Radar', 'Scribe', 'Sentinel', 'Broker'];
 const STATUSES = ['backlog', 'in-progress', 'done'];
 const PRIORITIES = ['low', 'medium', 'high', 'critical'];
 
@@ -19,14 +21,53 @@ function save(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
+// --- Sync from data.json ---
+// Merges file data with localStorage. File is source of truth for agent-created items.
+// UI edits (localStorage) override file data for matching IDs.
+export async function syncFromFile() {
+  try {
+    const res = await fetch(DATA_URL + '?t=' + Date.now());
+    if (!res.ok) return false;
+    const data = await res.json();
+
+    const fileTs = data.lastUpdated || 0;
+    const lastSync = parseInt(localStorage.getItem(SYNC_KEY) || '0');
+
+    // Only sync if file is newer (or first load with no local data)
+    const hasLocalData = load(TASKS_KEY, []).length > 0;
+    if (fileTs <= lastSync && hasLocalData) return false;
+
+    // Merge tasks: file tasks are base, localStorage overrides by ID
+    const localTasks = load(TASKS_KEY, []);
+    const localIds = new Set(localTasks.filter(t => t._local).map(t => t.id));
+    const fileTasks = (data.tasks || []).map(t => ({ ...t, _file: true }));
+
+    // Keep local-only tasks + merge file tasks (file wins for non-local items)
+    const merged = [
+      ...fileTasks,
+      ...localTasks.filter(t => localIds.has(t.id) && !fileTasks.find(f => f.id === t.id)),
+    ];
+    save(TASKS_KEY, merged);
+
+    // Goals: file always wins
+    if (data.goals) save(GOALS_KEY, data.goals);
+
+    localStorage.setItem(SYNC_KEY, String(fileTs));
+    return true;
+  } catch (e) {
+    console.warn('Sync failed:', e);
+    return false;
+  }
+}
+
 // --- Tasks ---
 export function getTasks() { return load(TASKS_KEY, []); }
 
 export function saveTask(task) {
   const tasks = getTasks();
   const idx = tasks.findIndex(t => t.id === task.id);
-  if (idx >= 0) tasks[idx] = { ...tasks[idx], ...task, updatedAt: Date.now() };
-  else tasks.push({ ...task, id: uid(), createdAt: Date.now(), updatedAt: Date.now() });
+  if (idx >= 0) tasks[idx] = { ...tasks[idx], ...task, updatedAt: Date.now(), _local: true };
+  else tasks.push({ ...task, id: uid(), createdAt: Date.now(), updatedAt: Date.now(), _local: true });
   save(TASKS_KEY, tasks);
   return tasks;
 }
@@ -59,26 +100,16 @@ export function deleteGoal(id) {
   return goals;
 }
 
-// --- Seed data ---
+// --- Seed: now handled by syncFromFile ---
 export function seedIfEmpty() {
-  if (getTasks().length > 0) return;
-  const seed = [
-    { title: 'Set up React Radar cron job', description: 'Daily Reddit scan for React topics', assignee: 'Pixel', priority: 'high', status: 'done', dueDate: '2026-02-12' },
-    { title: 'Build MedStopLoss marketing site', description: 'React marketing pages from Nova\'s copy', assignee: 'Pixel', priority: 'high', status: 'in-progress', dueDate: '2026-02-14' },
-    { title: 'SRE daily digest automation', description: 'Automated daily SRE digest scanning and page updates', assignee: 'Atlas', priority: 'high', status: 'in-progress', dueDate: '2026-02-15' },
-    { title: 'MedStopLoss market research', description: 'Research stop loss market, competitors, and positioning', assignee: 'Nova', priority: 'high', status: 'done', dueDate: '2026-02-12' },
-    { title: 'Learning Hub AI buddy improvements', description: 'Enhance the AI study buddy in learning-hub.html', assignee: 'Pixel', priority: 'medium', status: 'backlog', dueDate: '2026-02-20' },
-    { title: 'Coordinate agent workflows', description: 'Manage cross-agent task handoffs and priorities', assignee: 'Alec', priority: 'medium', status: 'in-progress', dueDate: '' },
-    { title: 'User experience audit', description: 'Review all pages for UX consistency and accessibility', assignee: 'Sage', priority: 'medium', status: 'backlog', dueDate: '2026-02-18' },
-  ];
-  seed.forEach(t => saveTask(t));
-
-  const goalSeed = [
-    { title: 'Launch MedStopLoss website', progress: 40, description: 'Complete marketing site with all pages' },
-    { title: 'Automate daily content updates', progress: 75, description: 'React Radar + SRE Digest running daily' },
-    { title: 'Mission Control MVP', progress: 10, description: 'Team dashboard for task tracking' },
-  ];
-  goalSeed.forEach(g => saveGoal(g));
+  // Initial sync from file replaces old localStorage seed
+  syncFromFile().then(synced => {
+    if (!synced && getTasks().length === 0) {
+      // Fallback: trigger a reload from file ignoring timestamp
+      localStorage.removeItem(SYNC_KEY);
+      syncFromFile();
+    }
+  });
 }
 
 export { AGENTS, STATUSES, PRIORITIES };
