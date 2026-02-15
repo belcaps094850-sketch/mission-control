@@ -180,6 +180,78 @@ with open('$DATA_FILE', 'w') as f: json.dump(data, f, indent=2)
 "
     ;;
 
+  add-problem)
+    TITLE="" DESC="" STATUS="open" SCOPE="analysis" ASSIGNEE="" PRIORITY="medium"
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --title) TITLE="$2"; shift 2 ;;
+        --description) DESC="$2"; shift 2 ;;
+        --status) STATUS="$2"; shift 2 ;;
+        --scope) SCOPE="$2"; shift 2 ;;
+        --assignee) ASSIGNEE="$2"; shift 2 ;;
+        --priority) PRIORITY="$2"; shift 2 ;;
+        *) shift ;;
+      esac
+    done
+    if [ -z "$TITLE" ]; then
+      echo "Error: --title required"
+      exit 1
+    fi
+    ID="p$(date +%s)"
+    NOW=$(date +%s)000
+    python3 -c "
+import json
+with open('$DATA_FILE', 'r') as f: data = json.load(f)
+if 'problems' not in data: data['problems'] = []
+prob = {'id':'$ID','title':'$TITLE','description':'$DESC','status':'$STATUS','scope':'$SCOPE','assignee':'$ASSIGNEE','priority':'$PRIORITY','analysis':{'rootCause':'','impact':'','solution':'','nextSteps':''},'createdAt':$NOW,'updatedAt':$NOW}
+data['problems'].append(prob)
+data['lastUpdated'] = $NOW
+with open('$DATA_FILE', 'w') as f: json.dump(data, f, indent=2)
+print(f'Added problem: {prob[\"id\"]} — {prob[\"title\"]} ({prob[\"scope\"]})')
+"
+    ;;
+
+  update-problem)
+    ID="" STATUS="" PRIORITY="" SCOPE="" ASSIGNEE="" TITLE="" DESC=""
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --id) ID="$2"; shift 2 ;;
+        --status) STATUS="$2"; shift 2 ;;
+        --priority) PRIORITY="$2"; shift 2 ;;
+        --scope) SCOPE="$2"; shift 2 ;;
+        --assignee) ASSIGNEE="$2"; shift 2 ;;
+        --title) TITLE="$2"; shift 2 ;;
+        --description) DESC="$2"; shift 2 ;;
+        *) shift ;;
+      esac
+    done
+    if [ -z "$ID" ]; then
+      echo "Error: --id required"
+      exit 1
+    fi
+    NOW=$(date +%s)000
+    python3 -c "
+import json
+with open('$DATA_FILE', 'r') as f: data = json.load(f)
+found = False
+for p in data.get('problems', []):
+    if p['id'] == '$ID':
+        if '$STATUS': p['status'] = '$STATUS'
+        if '$PRIORITY': p['priority'] = '$PRIORITY'
+        if '$SCOPE': p['scope'] = '$SCOPE'
+        if '$ASSIGNEE': p['assignee'] = '$ASSIGNEE'
+        if '$TITLE': p['title'] = '$TITLE'
+        if '$DESC': p['description'] = '$DESC'
+        p['updatedAt'] = $NOW
+        found = True
+        print(f'Updated problem: {p[\"id\"]} — {p[\"title\"]} → {p[\"status\"]}')
+        break
+if not found: print(f'Problem $ID not found')
+data['lastUpdated'] = $NOW
+with open('$DATA_FILE', 'w') as f: json.dump(data, f, indent=2)
+"
+    ;;
+
   list-tasks)
     ASSIGNEE="" STATUS=""
     while [[ $# -gt 0 ]]; do
@@ -205,6 +277,8 @@ for t in data['tasks']:
     echo "  mc.sh add-task --title \"...\" --assignee \"Agent\" [--priority high] [--status in-progress] [--description \"...\"] [--due 2026-02-20] [--project MedStopLoss]"
     echo "  mc.sh update-task --id \"t5\" --status \"done\""
     echo "  mc.sh update-goal --id \"g1\" --progress 75"
+    echo "  mc.sh add-problem --title \"...\" --assignee \"Agent\" [--description \"...\"] [--scope analysis] [--status open] [--priority high]"
+    echo "  mc.sh update-problem --id \"p1\" --status \"resolved\""
     echo "  mc.sh add-idea --title \"...\" [--description \"...\"] [--status spark] [--priority high]"
     echo "  mc.sh update-idea --id \"i1\" --status \"validated\""
     echo "  mc.sh list-tasks [--assignee Agent] [--status done]"

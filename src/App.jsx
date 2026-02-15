@@ -6,6 +6,7 @@ import Board from './pages/Board';
 import Roadmap from './pages/Roadmap';
 import Goals from './pages/Goals';
 import Ideas from './pages/Ideas';
+import Problems from './pages/Problems';
 import Team from './pages/Team';
 import Backlog from './pages/Backlog';
 import { syncFromFile } from './utils/store';
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/goals" element={<Goals />} />
           <Route path="/ideas" element={<Ideas />} />
+          <Route path="/problems" element={<Problems />} />
           <Route path="/team" element={<Team />} />
           <Route path="/backlog" element={<Backlog />} />
         </Routes>

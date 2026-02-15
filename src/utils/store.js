@@ -52,6 +52,18 @@ export async function syncFromFile() {
     // Goals: file always wins
     if (data.goals) save(GOALS_KEY, data.goals);
 
+    // Problems: merge like tasks
+    if (data.problems) {
+      const localProblems = load(PROBLEMS_KEY, []);
+      const localProblemIds = new Set(localProblems.filter(p => p._local).map(p => p.id));
+      const fileProblems = (data.problems || []).map(p => ({ ...p, _file: true }));
+      const mergedProblems = [
+        ...fileProblems,
+        ...localProblems.filter(p => localProblemIds.has(p.id) && !fileProblems.find(f => f.id === p.id)),
+      ];
+      save(PROBLEMS_KEY, mergedProblems);
+    }
+
     // Ideas: merge like tasks
     if (data.ideas) {
       const localIdeas = load(IDEAS_KEY, []);
@@ -73,7 +85,9 @@ export async function syncFromFile() {
 }
 
 const IDEAS_KEY = 'mc_ideas';
+const PROBLEMS_KEY = 'mc_problems';
 const IDEA_STATUSES = ['spark', 'exploring', 'validated', 'building'];
+const PROBLEM_STATUSES = ['open', 'analyzing', 'solution-found', 'resolved'];
 
 // --- Ideas ---
 export function getIdeas() { return load(IDEAS_KEY, []); }
@@ -91,6 +105,24 @@ export function deleteIdea(id) {
   const ideas = getIdeas().filter(i => i.id !== id);
   save(IDEAS_KEY, ideas);
   return ideas;
+}
+
+// --- Problems ---
+export function getProblems() { return load(PROBLEMS_KEY, []); }
+
+export function saveProblem(problem) {
+  const problems = getProblems();
+  const idx = problems.findIndex(p => p.id === problem.id);
+  if (idx >= 0) problems[idx] = { ...problems[idx], ...problem, updatedAt: Date.now(), _local: true };
+  else problems.push({ ...problem, id: uid(), createdAt: Date.now(), updatedAt: Date.now(), _local: true });
+  save(PROBLEMS_KEY, problems);
+  return problems;
+}
+
+export function deleteProblem(id) {
+  const problems = getProblems().filter(p => p.id !== id);
+  save(PROBLEMS_KEY, problems);
+  return problems;
 }
 
 // --- Tasks ---
@@ -145,4 +177,4 @@ export function seedIfEmpty() {
   });
 }
 
-export { AGENTS, STATUSES, PRIORITIES, IDEA_STATUSES };
+export { AGENTS, STATUSES, PRIORITIES, IDEA_STATUSES, PROBLEM_STATUSES };
