@@ -3,13 +3,13 @@
     {
       "id": "t1",
       "title": "Set up React Radar cron job",
-      "description": "Daily Reddit scan for React topics",
+      "description": "Unblocked with SearXNG - next run tonight at 4 AM",
       "assignee": "Pixel",
       "priority": "high",
-      "status": "done",
+      "status": "in-progress",
       "dueDate": "2026-02-12",
       "createdAt": 1707700000000,
-      "updatedAt": 1707700000000,
+      "updatedAt": 1771215400000,
       "project": "Learning Lab"
     },
     {
@@ -239,6 +239,42 @@
       "createdAt": 1707700000000,
       "updatedAt": 1707700000000,
       "project": "Learning Lab"
+    },
+    {
+      "id": "t1771215400",
+      "title": "Set up SearXNG self-hosted search",
+      "assignee": "Alec",
+      "priority": "high",
+      "status": "done",
+      "description": "Docker container on port 8888, replaces Brave API key dependency",
+      "dueDate": "",
+      "project": "",
+      "createdAt": 1771215400000,
+      "updatedAt": 1771215400000
+    },
+    {
+      "id": "t1771215400",
+      "title": "Consolidate agent reports to GitHub repo",
+      "assignee": "Alec",
+      "priority": "high",
+      "status": "done",
+      "description": "All reports now centralized in forgerock-learning/reports/ and auto-pushed",
+      "dueDate": "",
+      "project": "",
+      "createdAt": 1771215400000,
+      "updatedAt": 1771215400000
+    },
+    {
+      "id": "t1771215400",
+      "title": "Restructure cron jobs for SearXNG + auto-push",
+      "assignee": "Alec",
+      "priority": "high",
+      "status": "done",
+      "description": "Updated React Radar, Radar AI Digest, SRE Scout to use SearXNG. All cron jobs now git push reports.",
+      "dueDate": "",
+      "project": "",
+      "createdAt": 1771215400000,
+      "updatedAt": 1771215400000
     }
   ],
   "goals": [
@@ -267,7 +303,7 @@
       "description": "All agents created, configured, and running cron jobs"
     }
   ],
-  "lastUpdated": 1771134036996,
+  "lastUpdated": 1771215400000,
   "ideas": [
     {
       "id": "i1",
@@ -285,5 +321,23 @@
       "updatedAt": 1771131000000
     }
   ],
-  "problems": []
+  "problems": [
+    {
+      "id": "p1771134205",
+      "title": "Wemo switches lost app support",
+      "description": "Wemo app discontinued support for switches. No way to control them currently.",
+      "status": "solution-found",
+      "scope": "analysis",
+      "assignee": "Alec",
+      "priority": "high",
+      "analysis": {
+        "rootCause": "",
+        "impact": "",
+        "solution": "",
+        "nextSteps": ""
+      },
+      "createdAt": 1771134205000,
+      "updatedAt": 1771134790000
+    }
+  ]
 }
