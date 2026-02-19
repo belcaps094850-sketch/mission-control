@@ -275,6 +275,54 @@
       "project": "",
       "createdAt": 1771215400000,
       "updatedAt": 1771215400000
+    },
+    {
+      "id": "t20260218a",
+      "title": "Auth flows best practices page",
+      "description": "Registration, forgot password, and account recovery best practices with flow diagrams. Pushed to GitHub.",
+      "assignee": "Alec",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-18",
+      "createdAt": 1771462800000,
+      "updatedAt": 1771462800000,
+      "project": "Learning Lab"
+    },
+    {
+      "id": "t20260218b",
+      "title": "Update brew packages (ollama, llhttp)",
+      "description": "ollama 0.15.6\u21920.16.2, llhttp 9.3.0\u21929.3.1, gemini-cli 0.28.2\u21920.29.0",
+      "assignee": "Alec",
+      "priority": "medium",
+      "status": "done",
+      "dueDate": "2026-02-18",
+      "createdAt": 1771462800000,
+      "updatedAt": 1771462800000,
+      "project": "Infrastructure"
+    },
+    {
+      "id": "t20260218c",
+      "title": "Update OpenClaw to 2026.2.17",
+      "description": "Major update: styled Telegram buttons, reaction notifications, voice transcription, iOS share extension, security fixes",
+      "assignee": "Alec",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-02-18",
+      "createdAt": 1771462800000,
+      "updatedAt": 1771462800000,
+      "project": "Infrastructure"
+    },
+    {
+      "id": "t20260218d",
+      "title": "Social media scan for OpenClaw news",
+      "description": "Scanned Reddit, X/Twitter for OpenClaw mentions. Key: founder joined OpenAI, $380B Anthropic valuation, security concerns ongoing.",
+      "assignee": "Alec",
+      "priority": "medium",
+      "status": "done",
+      "dueDate": "2026-02-18",
+      "createdAt": 1771462800000,
+      "updatedAt": 1771462800000,
+      "project": "Research"
     }
   ],
   "goals": [
@@ -287,8 +335,8 @@
     {
       "id": "g2",
       "title": "Automate daily content updates",
-      "progress": 90,
-      "description": "React Radar + SRE Digest + AI Digest + Security Scan + Changelog all running"
+      "progress": 95,
+      "description": "All daily automations running: Radar AI Digest, SRE Scout, Security Scan, Changelog. Reports auto-pushed to GitHub."
     },
     {
       "id": "g3",
@@ -303,7 +351,7 @@
       "description": "All agents created, configured, and running cron jobs"
     }
   ],
-  "lastUpdated": 1771215400000,
+  "lastUpdated": 1771462800000,
   "ideas": [
     {
       "id": "i1",
