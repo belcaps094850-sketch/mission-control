@@ -15,13 +15,13 @@
     {
       "id": "t2",
       "title": "Build MedStopLoss marketing site",
-      "description": "React marketing pages from Nova's copy",
+      "description": "MedStopLoss marketing site \u2014 7 pages built (Home, About, Services, Brokers, TPAs, Resources, Contact). Deployed to GitHub.",
       "assignee": "Pixel",
       "priority": "high",
-      "status": "in-progress",
+      "status": "done",
       "dueDate": "2026-02-14",
       "createdAt": 1707700000000,
-      "updatedAt": 1707700000000,
+      "updatedAt": 1774594148000,
       "project": "MedStopLoss"
     },
     {
@@ -135,13 +135,13 @@
     {
       "id": "t12",
       "title": "Daily AI news digest",
-      "description": "Automated daily scan of Reddit/web for Claude, OpenAI, AI news",
+      "description": "Daily AI news digest \u2014 Radar cron running at 7 AM ET with SearXNG",
       "assignee": "Radar",
       "priority": "high",
-      "status": "in-progress",
+      "status": "done",
       "dueDate": "",
       "createdAt": 1771124000000,
-      "updatedAt": 1771124000000,
+      "updatedAt": 1774594148000,
       "project": "Infrastructure"
     },
     {
@@ -207,13 +207,13 @@
     {
       "id": "t18",
       "title": "Coordinate agent workflows",
-      "description": "Manage cross-agent task handoffs and priorities",
+      "description": "Agent coordination complete \u2014 12 agents configured, crons simplified, broken crons disabled",
       "assignee": "Alec",
       "priority": "medium",
-      "status": "in-progress",
+      "status": "done",
       "dueDate": "",
       "createdAt": 1707700000000,
-      "updatedAt": 1707700000000,
+      "updatedAt": 1774594148000,
       "project": "Infrastructure"
     },
     {
@@ -510,11 +510,11 @@
       "assignee": "Alec",
       "priority": "medium",
       "status": "done",
-      "description": "",
+      "description": "Problem analysis frameworks research (Fishbone, 5 Whys, Lotus Blossom, Cogitate) \u2014 completed",
       "dueDate": "",
       "project": "Research",
       "createdAt": 1772515955000,
-      "updatedAt": 1772857390000
+      "updatedAt": 1774594148000
     },
     {
       "id": "t1772515955",
@@ -719,6 +719,90 @@
       "project": "CommHub",
       "createdAt": 1774200531000,
       "updatedAt": 1774200531000
+    },
+    {
+      "id": "t1774594139",
+      "title": "Organize all workspace apps \u2014 GitHub repos, READMEs, builds",
+      "assignee": "Alec",
+      "priority": "high",
+      "status": "done",
+      "description": "Created GitHub repos for 4 orphan apps (ai-testing-demo, beneficiary-allocator, excalidraw-app, sketch-pad). Updated 7 boilerplate READMEs with proper docs. Built missing dists. Archived sketch-pad (superseded by excalidraw-app).",
+      "dueDate": "",
+      "project": "Infrastructure",
+      "createdAt": 1774594139000,
+      "updatedAt": 1774594139000
+    },
+    {
+      "id": "t1774594139",
+      "title": "App portfolio audit and inventory",
+      "assignee": "Alec",
+      "priority": "high",
+      "status": "done",
+      "description": "Full audit of 10 workspace apps: Bel Learning Lab (40+ pages), Morning Brief (5 pages), Mission Control (12 files), CommHub (18 pages, Spring Boot), MedStopLoss (7 pages), AI Testing Demo (8 demos), Beneficiary Allocator (5 patterns), Excalidraw App (diagramming), Sketch Pad (archived), Liberty React Starter (WIP).",
+      "dueDate": "",
+      "project": "Infrastructure",
+      "createdAt": 1774594139000,
+      "updatedAt": 1774594139000
+    },
+    {
+      "id": "t1774594167",
+      "title": "Improve MedStopLoss \u2014 add case studies, testimonials, CTA optimization",
+      "assignee": "Pixel",
+      "priority": "medium",
+      "status": "backlog",
+      "description": "Marketing site is live but needs conversion optimization \u2014 case studies, broker testimonials, clearer CTAs, and SEO meta tags.",
+      "dueDate": "",
+      "project": "MedStopLoss",
+      "createdAt": 1774594167000,
+      "updatedAt": 1774594167000
+    },
+    {
+      "id": "t1774594167",
+      "title": "Morning Brief \u2014 add auto-refresh from agent reports",
+      "assignee": "Alec",
+      "priority": "medium",
+      "status": "backlog",
+      "description": "Currently uses static JSON. Should auto-pull from forgerock-learning/reports/ or have a build step that syncs data.",
+      "dueDate": "",
+      "project": "Morning Brief",
+      "createdAt": 1774594167000,
+      "updatedAt": 1774594167000
+    },
+    {
+      "id": "t1774594167",
+      "title": "Excalidraw App \u2014 add export to PNG/SVG",
+      "assignee": "Pixel",
+      "priority": "low",
+      "status": "backlog",
+      "description": "Currently only exports JSON. Add PNG and SVG export for sharing diagrams.",
+      "dueDate": "",
+      "project": "Tools",
+      "createdAt": 1774594167000,
+      "updatedAt": 1774594167000
+    },
+    {
+      "id": "t1774594167",
+      "title": "Re-enable broken agent crons (Sentinel, Scout, Scribe)",
+      "assignee": "Atlas",
+      "priority": "medium",
+      "status": "backlog",
+      "description": "These were disabled due to issues. Need to debug and re-enable with simplified prompts.",
+      "dueDate": "",
+      "project": "Infrastructure",
+      "createdAt": 1774594167000,
+      "updatedAt": 1774594167000
+    },
+    {
+      "id": "t1774594167",
+      "title": "Liberty React Starter \u2014 finish JPA + Derby integration",
+      "assignee": "Alec",
+      "priority": "low",
+      "status": "backlog",
+      "description": "Entity and persistence.xml written but needs debugging. Claims Portal demo with CRUD API.",
+      "dueDate": "",
+      "project": "Learning Lab",
+      "createdAt": 1774594167000,
+      "updatedAt": 1774594167000
     }
   ],
   "goals": [
@@ -737,17 +821,17 @@
     {
       "id": "g3",
       "title": "Mission Control MVP",
-      "progress": 85,
+      "progress": 100,
       "description": "Team dashboard for task tracking \u2014 12 agents integrated"
     },
     {
       "id": "g4",
       "title": "12-agent team fully operational",
-      "progress": 50,
+      "progress": 75,
       "description": "All agents created, configured, and running cron jobs"
     }
   ],
-  "lastUpdated": 1774200531000,
+  "lastUpdated": 1774594167000,
   "ideas": [
     {
       "id": "i1",
