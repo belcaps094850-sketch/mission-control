@@ -1,16 +1,37 @@
-# React + Vite
+# Mission Control
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Team dashboard for tracking tasks, goals, and agent status across Bel's 12-agent AI team.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Task Board** — Track tasks by status, assignee, project, and priority
+- **Goals Tracker** — Monitor progress on strategic goals
+- **Team View** — Agent roster with avatars and roles
+- **Ideas Board** — Capture and prioritize product ideas
+- **CLI Integration** — `mc.sh` script for agent-driven task updates
 
-## React Compiler
+## CLI Usage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+./mc.sh add-task --title "..." --assignee "Agent" --priority high --status done --project "Project"
+./mc.sh update-task --id "t5" --status "done"
+./mc.sh update-goal --id "g1" --progress 75
+./mc.sh list-tasks [--assignee Agent] [--status in-progress]
+```
 
-## Expanding the ESLint configuration
+## Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React + Vite
+- JSON-file data store (`public/data.json`)
+
+## Run
+
+```bash
+npm install
+npm run dev     # http://localhost:3001
+npm run build   # Production build → dist/
+```
+
+## Deployment
+
+Runs as a LaunchAgent (`com.mission-control.dev`) — auto-starts on boot at port 3001.
