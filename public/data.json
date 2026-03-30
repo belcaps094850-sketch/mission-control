@@ -803,6 +803,18 @@
       "project": "Learning Lab",
       "createdAt": 1774594167000,
       "updatedAt": 1774594167000
+    },
+    {
+      "id": "t1774848753",
+      "title": "Authentication methods deep dive research",
+      "assignee": "Alec",
+      "priority": "high",
+      "status": "done",
+      "description": "Full analysis of authentication methods from Basic Auth to OIDC/SSO. Covers: Basic, Digest, API Keys, Sessions, Bearer/JWT, Access+Refresh tokens, OAuth2, OIDC, SAML, SSO. Includes taxonomy diagram and common misconceptions. Saved to forgerock-learning/reports/.",
+      "dueDate": "",
+      "project": "Research",
+      "createdAt": 1774848753000,
+      "updatedAt": 1774848753000
     }
   ],
   "goals": [
@@ -831,7 +843,7 @@
       "description": "All agents created, configured, and running cron jobs"
     }
   ],
-  "lastUpdated": 1774594167000,
+  "lastUpdated": 1774848753000,
   "ideas": [
     {
       "id": "i1",
